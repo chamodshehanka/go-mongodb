@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/spf13/viper"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
@@ -47,4 +48,17 @@ func main() {
 	if err != nil {
 		log.Fatalf("%s", err)
 	}
+
+	testDB := client.Database("cluster0")
+	podcastsCollection := testDB.Collection("podcasts")
+	//episodesCollection := testDB.Collection("episodes")
+
+	podcastsResult, err := podcastsCollection.InsertOne(ctx, bson.D{
+		{Key: "title", Value: "The Polyglot Developer Podcast"},
+		{Key: "author", Value: "Chamod Perera"},
+	})
+	if err != nil {
+		log.Fatalf("Unable to Add %s", err)
+	}
+	fmt.Println(podcastsResult.InsertedID)
 }
