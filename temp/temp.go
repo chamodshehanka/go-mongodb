@@ -1,4 +1,4 @@
-package main
+package temp
 
 import (
 	"context"
@@ -13,12 +13,12 @@ import (
 	"time"
 )
 
-type Podcast struct {
-	ID     primitive.ObjectID `bson:"_id,omitempty"`
-	Name   string             `bson:"name,omitempty"`
-	Author string             `bson:"author,omitempty"`
-	Tags   []string           `bson:"tags,omitempty"`
-}
+//type Podcast struct {
+//	ID     primitive.ObjectID `bson:"_id,omitempty"`
+//	Name   string             `bson:"name,omitempty"`
+//	Author string             `bson:"author,omitempty"`
+//	Tags   []string           `bson:"tags,omitempty"`
+//}
 
 type Episode struct {
 	ID          primitive.ObjectID `bson:"_id,omitempty"`
@@ -27,7 +27,7 @@ type Episode struct {
 	Description string             `bson:"description,omitempty"`
 }
 
-func main() {
+func smain() {
 
 	// Set the file name of the configurations file
 	viper.SetConfigName("config")

@@ -1,4 +1,4 @@
-package main
+package temp
 
 import (
 	"context"
@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-func main() {
+func gmain() {
 	// Set the file name of the configurations file
 	viper.SetConfigName("config")
 
