@@ -22,7 +22,7 @@ func getPodcasts(w http.ResponseWriter, r *http.Request) {
 func loadPodcastsList()  {
 
 
-	//client :=
+	//config
 	//testDB := client.Database("cluster0")
 	//podcastsCollection := testDB.Collection("podcasts")
 	//
