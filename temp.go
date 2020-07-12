@@ -5,12 +5,27 @@ import (
 	"fmt"
 	"github.com/spf13/viper"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 	"log"
 	"time"
 )
+
+type Podcast struct {
+	ID     primitive.ObjectID `bson:"_id,omitempty"`
+	Name   string             `bson:"name,omitempty"`
+	Author string             `bson:"author,omitempty"`
+	Tags   []string           `bson:"tags,omitempty"`
+}
+
+type Episode struct {
+	ID          primitive.ObjectID `bson:"_id,omitempty"`
+	Podcast     primitive.ObjectID `bson:"podcast,omitempty"`
+	Title       string             `bson:"title,omitempty"`
+	Description string             `bson:"description,omitempty"`
+}
 
 func main() {
 
