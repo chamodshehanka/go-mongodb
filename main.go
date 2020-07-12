@@ -51,14 +51,34 @@ func main() {
 
 	testDB := client.Database("cluster0")
 	podcastsCollection := testDB.Collection("podcasts")
-	//episodesCollection := testDB.Collection("episodes")
+	episodesCollection := testDB.Collection("episodes")
 
 	podcastsResult, err := podcastsCollection.InsertOne(ctx, bson.D{
-		{Key: "title", Value: "The Polyglot Developer Podcast"},
-		{Key: "author", Value: "Chamod Perera"},
+		{"title", "The Polyglot Developer Podcast"},
+		{"author", "Chamod Perera"},
+		{"tags", bson.A{"development", "programming", "coding"}},
 	})
 	if err != nil {
 		log.Fatalf("Unable to Add %s", err)
 	}
 	fmt.Println(podcastsResult.InsertedID)
+
+	episodesResult, err := episodesCollection.InsertMany(ctx, []interface{}{
+		bson.D{
+			{"podcast", podcastsResult.InsertedID},
+			{"title", "Episode #1"},
+			{"description", "This is the first episode"},
+			{"duration", 25},
+		},
+		bson.D{
+			{"podcast", podcastsResult.InsertedID},
+			{"title", "Episode #2"},
+			{"description", "This is the second episode"},
+			{"duration", 35},
+		},
+	})
+	if err != nil {
+		log.Fatalf("Unable to Add %s", err)
+	}
+	fmt.Println(episodesResult.InsertedIDs)
 }
