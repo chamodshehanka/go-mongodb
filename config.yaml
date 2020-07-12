@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+database:
+  dbname: "Cat"
+  user: "chamod"
+  password: "12345"
+
+EXAMPLE_VAR: "variable from config.yml"
+EXAMPLE_PATH: "path from config.yml"
