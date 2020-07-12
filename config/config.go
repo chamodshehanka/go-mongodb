@@ -60,7 +60,7 @@ func GetMongoDBConnection() *mongo.Client {
 	if err != nil {
 		log.Fatalf("%s", err)
 	}
-	defer client.Disconnect(ctx)
+	//defer client.Disconnect(ctx)
 
 	err = client.Ping(ctx, readpref.Primary())
 	if err != nil {
