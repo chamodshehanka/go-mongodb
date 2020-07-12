@@ -20,6 +20,16 @@ func handler(w http.ResponseWriter, r *http.Request) {
 var podcasts []models.Podcast
 var episodes []models.Episode
 
+func createPodcast(w http.ResponseWriter, r *http.Request)  {
+	w.Header().Set("Content-Type", "application/json")
+	var podcast models.Podcast
+	_ = json.NewDecoder(r.Body).Decode(&podcast)
+
+	client := config.GetMongoDBConnection()
+
+	_ = json.NewEncoder(w).Encode("Success")
+}
+
 func getPodcasts(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(podcasts)
